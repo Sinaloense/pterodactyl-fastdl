@@ -36,3 +36,13 @@ server {
 		autoindex on;
 	}
 }
+
+# If you only want to add fastdl to a current nginx config, only add this, your fastdl will be: <domain>/fastdl
+location ^~ /fastdl {
+	alias /var/www/pterodactyl-fastdl;
+
+	# First attempt to serve request as file, then
+	# as directory, then fall back to displaying a 404.
+	try_files $uri $uri/ =404;
+	autoindex on;
+}
