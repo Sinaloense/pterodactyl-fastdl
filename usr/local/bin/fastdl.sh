@@ -55,25 +55,3 @@ do
     
     sleep $secondsNextSync
 done
-
-# Another method of sync with inotifywait
-
-### Sync files when start service ###
-# Delete file to know if rsync is running
-#rm -f /etc/pterodactyl/.rsync-running
-
-# Sync files
-#syncFastDl
-
-### Listener of events when a file is edited, deleted, moved ###
-#inotifywait -r -m -e close_write,delete,move /var/lib/pterodactyl/volumes/ | while read path action file; do
-#    echo "Change detected date $(date) in ${path} action ${action} in file ${file}";
-#
-#    # If not exist rsync file .rsync-running
-#    if [ ! -f '/etc/pterodactyl/.rsync-running' ]; then
-#        # Sync files
-#        syncFastDl;
-#    else
-#        echo "Sync already running...";
-#    fi
-#done
