@@ -6,7 +6,7 @@ server {
     ssl_certificate         /etc/ssl/certs/serverscstrike.com-cert.pem;
     ssl_certificate_key     /etc/ssl/private/serverscstrike.com-key.pem;
 
-	root /var/lib/pterodactyl/volumes;
+	root /var/www/pterodactyl-fastdl;
 	index index.html;
 
 	server_name <domain>;
@@ -15,12 +15,7 @@ server {
 		# First attempt to serve request as file, then
 		# as directory, then fall back to displaying a 404.
 		try_files $uri $uri/ =404;
-		# Comment this line if dont want to list files (only after checking that your fastdl works)
 		autoindex on;
-	}
-
-	location ~\.(sma|amxx|sp|smx|cfg|ini|log|bak|dat|sql|sq3|so|dll|php|zip|rar|jar|sh)$ {
-		return 403;
 	}
 }
 
@@ -29,7 +24,7 @@ server {
     listen 80;
     listen [::]:80;
 
-	root /var/lib/pterodactyl/volumes;
+	root /var/www/pterodactyl-fastdl;
 	index index.html;
 
 	server_name <domain>;
@@ -38,7 +33,6 @@ server {
 		# First attempt to serve request as file, then
 		# as directory, then fall back to displaying a 404.
 		try_files $uri $uri/ =404;
-		# Comment this line if dont want to list files (only after checking that your fastdl works)
 		autoindex on;
 	}
 }
@@ -50,10 +44,5 @@ location ^~ /fastdl {
 	# First attempt to serve request as file, then
 	# as directory, then fall back to displaying a 404.
 	try_files $uri $uri/ =404;
-	# Comment this line if dont want to list files (only after checking that your fastdl works)
 	autoindex on;
-
-	location ~\.(sma|amxx|sp|smx|cfg|ini|log|bak|dat|sql|sq3|so|dll|php|zip|rar|jar|sh)$ {
-		return 403;
-	}
 }
